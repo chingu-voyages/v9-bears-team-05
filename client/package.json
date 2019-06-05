@@ -2,8 +2,8 @@
   "name": "aphrodite",
   "version": "1.0.0",
   "description": "My voyage project",
-  "author": "Sherin Binu",
-  "private": true,
+  "author": "Sherin Binu <sherinbinu@hotmail.com>",
+  "contributors": ["Tran Trong Hung"],
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
