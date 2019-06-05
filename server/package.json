@@ -1,0 +1,35 @@
+{
+  "name": "aphrodite",
+  "version": "0.1.0",
+  "description": "my voyage project",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chingu-voyages/v9-bears-team-05.git"
+  },
+  "keywords": [
+    "nuxt",
+    "nodejs",
+    "express"
+  ],
+  "author": "Sherin Binu <sherinbinu@hotmail.com>",
+  "contributors": [
+    "Tran Trong Hung"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chingu-voyages/v9-bears-team-05/issues"
+  },
+  "homepage": "https://github.com/chingu-voyages/v9-bears-team-05#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
