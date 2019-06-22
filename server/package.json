@@ -4,6 +4,7 @@
   "description": "my voyage project",
   "main": "index.js",
   "scripts": {
+    "audit": "snyk test",
     "dev": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ."
@@ -27,9 +28,11 @@
   },
   "homepage": "https://github.com/chingu-voyages/v9-bears-team-05#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "helmet": "^3.18.0"
   },
   "devDependencies": {
-    "nodemon": "^1.19.1"
+    "nodemon": "^1.19.1",
+    "snyk": "^1.180.0"
   }
 }
