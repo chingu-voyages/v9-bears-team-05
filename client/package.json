@@ -14,9 +14,5 @@
     "dev": "next",
     "build": "next build",
     "start": "next start"
-  },
-  "devDependencies": {
-    "webpack": "^4.35.0",
-    "webpack-dev-server": "^3.7.2"
   }
 }
