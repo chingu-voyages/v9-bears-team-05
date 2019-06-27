@@ -1,7 +1,14 @@
 version: '3'
 services:
   postgres:
-    image: 'postgres:latest'
+    restart: always
+    build:
+      context: ./psql
+    environment: 
+      - POSTGRES_USER=aphrodite
+      - POSTGRES_PASSWORD=aphroditepw
+    ports: 
+      - "5432:5432"
   nginx:
     restart: always
     build:
