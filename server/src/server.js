@@ -4,6 +4,7 @@ const hpp = require('hpp');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const config = require('./config');
+const middlewares = require('./middlewares');
 const userRoutes = require('./routes/user.route');
 const authRoutes = require('./routes/auth.route');
 
@@ -22,6 +23,12 @@ app.use(hpp({
 }));
 app.use(limiter);
 app.use(express.json({ limit: 1e6 }));
+
+app.use(middlewares.handleEmptyPayload);
+app.use(middlewares.contentTypeSet);
+app.use(middlewares.contentTypeJson);
+app.use(middlewares.handleRequestBodyErrors);
+app.use(middlewares.setResponseHeaders);
 
 app.use('/users/', userRoutes);
 app.use('/auth/', authRoutes);

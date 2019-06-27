@@ -1,4 +1,4 @@
-### Signup
+### Login
 
 POST http://localhost:3050/api/auth/login
 Content-Type: application/json
@@ -7,3 +7,8 @@ Content-Type: application/json
   "email": "test@gmail.com",
   "password": "pdpdpD123"
 }
+
+
+### Logout
+
+GET http://localhost:3050/api/auth/logout
