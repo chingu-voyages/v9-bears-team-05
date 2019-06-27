@@ -2,7 +2,7 @@
   "name": "aphrodite",
   "version": "0.1.0",
   "description": "my voyage project",
-  "main": "src/index.js",
+  "main": "src/server.js",
   "scripts": {
     "audit": "snyk test",
     "dev": "nodemon",
@@ -31,6 +31,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
+    "express-rate-limit": "^5.0.0",
     "helmet": "^3.18.0",
     "jsonwebtoken": "^8.5.1",
     "pg": "^7.11.0"
