@@ -1,4 +1,3 @@
-    
 class ResponseBody {
   constructor() {
     this.error = true;
