@@ -3,7 +3,6 @@ const pg = require('../db/psql');
 const ValidationError = require('../helpers/classes/ValidationError');
 const ResponseBody = require('../helpers/classes/ResponseBody');
 const validator = require('../validations/user.validation');
-const signToken = require('../helpers/functions/signToken');
 
 exports.getAllUsers = () => {};
 
@@ -27,11 +26,9 @@ exports.createUser = async (req, res) => {
         return res.status(500).json(resBody);
       }
 
-      const token = signToken(req.body.email);
-
       resBody.setSuccess();
       resBody.setMessage('Successfully created a new user');
-      resBody.setPayload({ key: 'token', value: token });
+      resBody.removePayload();
       return res.status(201).json(resBody);
     });
 };
