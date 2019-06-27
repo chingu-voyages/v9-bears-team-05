@@ -1,4 +1,5 @@
 const express = require('express');
+const xss = require('xss-clean');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const config = require('./config');
@@ -13,9 +14,10 @@ const limiter = rateLimit({
   message: 'Too many requests from this IP, please try again in an hour!',
 });
 
+app.use(helmet());
+app.use(xss());
 app.use(limiter);
 app.use(express.json({ limit: 1e6 }));
-app.use(helmet());
 
 app.use('/users/', userRoutes);
 app.use('/auth/', authRoutes);
