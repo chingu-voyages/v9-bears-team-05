@@ -1,5 +1,6 @@
 const express = require('express');
 const xss = require('xss-clean');
+const hpp = require('hpp');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const config = require('./config');
@@ -16,6 +17,9 @@ const limiter = rateLimit({
 
 app.use(helmet());
 app.use(xss());
+app.use(hpp({
+  whitelist: ['sample'],
+}));
 app.use(limiter);
 app.use(express.json({ limit: 1e6 }));
 
