@@ -31,7 +31,8 @@ exports.login = (req, res) => {
           resBody.setMessage('Successfully logged in');
           resBody.removePayload();
           const cookieOptions = {
-            expires: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000),
+            expires:
+              new Date(Date.now() + parseInt(config.jwtExpiration, 10) * 24 * 60 * 60 * 1000),
             httpOnly: true,
           };
           if (config.env === 'production') cookieOptions.secure = true;
