@@ -6,8 +6,6 @@ const ResponseBody = require('../helpers/classes/ResponseBody');
 const validator = require('../validations/auth.validation');
 const signToken = require('../helpers/functions/signToken');
 
-exports.signup = () => {};
-
 exports.login = (req, res) => {
   const resBody = new ResponseBody();
 
@@ -28,7 +26,7 @@ exports.login = (req, res) => {
 
       if (results.rows.length === 1) {
         if (await bcrypt.compare(req.body.password, results.rows[0].hashed_password)) {
-          const token = signToken(req.body.email);
+          const token = signToken(results.rows[0].id);
           resBody.setSuccess();
           resBody.setMessage('Successfully logged in');
           resBody.removePayload();
@@ -50,4 +48,11 @@ exports.login = (req, res) => {
     });
 };
 
-exports.logout = () => {};
+exports.logout = (req, res) => {
+  const resBody = new ResponseBody();
+  res.clearCookie('jwt');
+  resBody.setSuccess();
+  resBody.setMessage('Successfully logged out.');
+  resBody.removePayload();
+  res.status(200).json(resBody);
+};
