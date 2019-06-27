@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/chingu-voyages/v9-bears-team-05#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
     "helmet": "^3.18.0",
     "pg": "^7.11.0"
