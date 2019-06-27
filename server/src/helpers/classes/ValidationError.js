@@ -4,7 +4,7 @@ class ValidationError extends Error {
     super(...params);
 
     if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, ValidationError);
+      Error.captureStackTrace(this, this.constructor);
     }
   }
 }
