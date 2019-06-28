@@ -3,6 +3,7 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
+const cookieParser = require('cookie-parser');
 const config = require('./config');
 const middlewares = require('./middlewares');
 const userRoutes = require('./routes/user.route');
@@ -27,6 +28,7 @@ app.use(hpp({
 }));
 app.use(limiter);
 app.use(express.json({ limit: 1e6 }));
+app.use(cookieParser());
 
 app.use(middlewares.handleEmptyPayload);
 app.use(middlewares.contentTypeSet);
