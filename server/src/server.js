@@ -6,7 +6,11 @@ const helmet = require('helmet');
 const config = require('./config');
 const middlewares = require('./middlewares');
 const userRoutes = require('./routes/user.route');
-const authRoutes = require('./routes/auth.route');
+const authRoutes = require('./routes/auth.routes');
+const closetRoutes = require('./routes/closet.routes');
+const collRoutes = require('./routes/collection.routes');
+const styleRoutes = require('./routes/style.routes');
+const clothRoutes = require('./routes/cloth.routes');
 
 const app = express();
 
@@ -32,6 +36,10 @@ app.use(middlewares.setResponseHeaders);
 
 app.use('/users/', userRoutes);
 app.use('/auth/', authRoutes);
+app.use('/closets/', closetRoutes);
+app.use('/collections/', collRoutes);
+app.use('/styles/', styleRoutes);
+app.use('/clothes/', clothRoutes);
 
 app.listen(config.port, (error) => {
   /* eslint-disable no-console */

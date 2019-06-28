@@ -15,7 +15,7 @@ exports.login = (req, res) => {
     return res.status(400).json(resBody);
   }
 
-  pg.query('SELECT * FROM users WHERE email = $1',
+  pg.query('SELECT * FROM user_ WHERE email = $1',
     [req.body.email],
     async (error, results) => {
       if (error) {
