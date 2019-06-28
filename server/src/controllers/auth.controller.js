@@ -26,7 +26,7 @@ exports.login = (req, res) => {
 
       if (results.rows.length === 1) {
         if (await bcrypt.compare(req.body.password, results.rows[0].hashed_password)) {
-          const token = signToken(results.rows[0].id);
+          const token = signToken(results.rows[0].user_id);
           resBody.setSuccess();
           resBody.setMessage('Successfully logged in');
           resBody.removePayload();
