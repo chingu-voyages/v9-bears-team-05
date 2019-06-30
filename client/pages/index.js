@@ -1,38 +1,24 @@
-import Head from 'next/head'
-
+import Head from "next/head";
+import LandingPage from "./LandingPage/LandingPage";
 export default function HomePage() {
   return (
-    <main>
-      <Head>
-        <title>Aphrodite</title>
-      </Head>
-      <h1>Aphrodite</h1>
-      <style jsx>{`
-        main {
-          font-family: 'SF Pro Text', 'SF Pro Icons', 'Helvetica Neue',
-            'Helvetica', 'Arial', sans-serif;
-          padding: 20px 20px 60px;
-          max-width: 680px;
-          margin: 0 auto;
-          font-size: 16px;
-          line-height: 1.65;
-          text-align: center;
-        }
-        h1 {
-          margin-top: 70px;
-          font-size: 45px;
-        }
-        a {
-          cursor: pointer;
-          color: #0076ff;
-          text-decoration: none;
-          transition: all 0.2s ease;
-          border-bottom: 1px solid white;
-        }
-        a:hover {
-          border-bottom: 1px solid #0076ff;
+    
+    <React.Fragment>
+      <LandingPage />
+      <style global jsx>{`
+        body {
+          height: 100%;
+          margin: 0;
+          font-family: "PT Mono", monospace;
+          box-sizing: border-box;
+          padding: 0;
+          border: 0;
+          color: #444;
+          line-height: 1em;
+          font-size: 100%;
+          -webkit-tap-highlight-color: rgba(0,0,0,0);
         }
       `}</style>
-    </main>
-  )
+    </React.Fragment>
+  );
 }
