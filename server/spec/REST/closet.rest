@@ -1,3 +1,32 @@
-####Get all closets
+### Get all closets
 
 GET http://localhost:3050/api/v1/closets
+
+
+### Get closet with ID
+
+GET http://localhost:3050/api/v1/closets/4
+
+
+### Create a closet
+
+POST http://localhost:3050/api/v1/closets
+Content-Type: application/json
+
+{
+  "name": "Test Closet"
+}
+
+
+### Rename a closet
+
+PATCH http://localhost:3050/api/v1/closets/10
+Content-Type: application/json
+
+{
+  "name": "Renamed Closet Test"
+}
+
+### Delete a closet with ID 
+
+DELETE http://localhost:3050/api/v1/closets/9
