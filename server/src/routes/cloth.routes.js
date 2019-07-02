@@ -1,15 +1,16 @@
 const router = require('express').Router();
 const clothController = require('../controllers/cloth.controller');
+const authController = require('../controllers/auth.controller');
 
 router
   .route('/')
-  .get(clothController.getAllClothes)
-  .post(clothController.createCloth);
+  .get(authController.authGaurd, clothController.getAllClothes)
+  .post(authController.authGaurd, clothController.createCloth);
 
 router
   .route('/:id')
-  .get(clothController.getCloth)
-  .patch(clothController.updateCloth)
-  .delete(clothController.deleteCloth);
+  .get(authController.authGaurd, clothController.getCloth)
+  .patch(authController.authGaurd, clothController.updateCloth)
+  .delete(authController.authGaurd, clothController.deleteCloth);
 
 module.exports = router;

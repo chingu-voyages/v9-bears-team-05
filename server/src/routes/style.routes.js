@@ -1,15 +1,16 @@
 const router = require('express').Router();
 const styleController = require('../controllers/style.controller');
+const authController = require('../controllers/auth.controller');
 
 router
   .route('/')
-  .get(styleController.getAllStyles)
-  .post(styleController.createStyle);
+  .get(authController.authGaurd, styleController.getAllStyles)
+  .post(authController.authGaurd, styleController.createStyle);
 
 router
   .route('/:id')
-  .get(styleController.getStyle)
-  .patch(styleController.updateStyle)
-  .delete(styleController.deleteStyle);
+  .get(authController.authGaurd, styleController.getStyle)
+  .patch(authController.authGaurd, styleController.updateStyle)
+  .delete(authController.authGaurd, styleController.deleteStyle);
 
 module.exports = router;

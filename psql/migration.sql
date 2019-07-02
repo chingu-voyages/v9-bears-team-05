@@ -24,13 +24,15 @@ CREATE TABLE style (
   style_id SERIAL PRIMARY KEY,
   style_name VARCHAR,
   collection_id INTEGER NOT NULL REFERENCES collection_(collection_id) ON DELETE CASCADE,
+  user_id INTEGER NOT NULL REFERENCES user_(user_id) ON DELETE CASCADE,
   contents VARCHAR DEFAULT NULL
 );
 
 CREATE TABLE cloth (
   cloth_id SERIAL PRIMARY KEY,
   cloth_name VARCHAR,
-  image_url VARCHAR DEFAULT NULL
+  image_url VARCHAR DEFAULT NULL,
+  user_id INTEGER NOT NULL REFERENCES user_(user_id) ON DELETE CASCADE
 );
 
 CREATE TABLE cloth_closet_mapping (

@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs');
-const pg = require('../db/psql');
+const pg = require('../services/psql');
 const ValidationError = require('../helpers/classes/ValidationError');
 const ResponseBody = require('../helpers/classes/ResponseBody');
 const validator = require('../validations/user.validation');
