@@ -1,0 +1,32 @@
+####Get all clothes
+
+GET http://localhost:3050/api/v1/clothes
+
+
+### Get cloth with ID
+
+GET http://localhost:3050/api/v1/clothes/4
+
+
+### Create a cloth
+
+POST http://localhost:3050/api/v1/clothes
+Content-Type: application/json
+
+{
+  "name": "Test Cloth"
+}
+
+
+### Rename a cloth
+
+PATCH http://localhost:3050/api/v1/clothes/4
+Content-Type: application/json
+
+{
+  "name": "Renamed Cloth Test"
+}
+
+### Delete a cloth with ID 
+
+DELETE http://localhost:3050/api/v1/clothes/4

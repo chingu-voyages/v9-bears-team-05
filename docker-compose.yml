@@ -1,0 +1,41 @@
+version: '3'
+services:
+  postgres:
+    restart: always
+    build:
+      context: ./psql
+    environment: 
+      - POSTGRES_USER=aphrodite
+      - POSTGRES_PASSWORD=aphroditepw
+    ports: 
+      - 5432
+  nginx:
+    restart: always
+    build:
+      context: ./nginx
+    ports:
+      - "3050:80"
+  api:
+    image: node:alpine
+    working_dir: /app
+    command: npm run dev
+    volumes: 
+      - ./server:/app
+    environment: 
+      - PORT=5000
+      - PG_USER=aphrodite
+      - PG_HOST=postgres
+      - PG_DATABASE=aphrodite
+      - PG_PASSWORD=aphroditepw
+      - PG_PORT=5432
+      - JWT_SECRET=thissecretshouldbeatleastthirtytwocharacterslong
+      - JWT_EXPIRES_IN=90
+      - ORIGIN=*
+  client:
+    image: node:alpine
+    working_dir: /app
+    command: npm run dev
+    ports:
+    - '3000:3000'
+    volumes: 
+    - ./client:/app

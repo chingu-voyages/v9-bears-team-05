@@ -1,0 +1,24 @@
+### Login - User 1
+
+POST http://localhost:3050/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "test@gmail.com",
+  "password": "pdpdpD123"
+}
+
+### Login - User 2
+
+POST http://localhost:3050/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "anotheruser@gmail.com",
+  "password": "pdpdpP123"
+}
+
+
+### Logout
+
+GET http://localhost:3050/api/v1/auth/logout
