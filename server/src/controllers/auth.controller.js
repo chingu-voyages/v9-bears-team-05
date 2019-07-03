@@ -1,10 +1,10 @@
 const bcrypt = require('bcryptjs');
 const config = require('../config');
-const pg = require('../db/psql');
+const pg = require('../services/psql');
 const ValidationError = require('../helpers/classes/ValidationError');
 const ResponseBody = require('../helpers/classes/ResponseBody');
 const validator = require('../validations/auth.validation');
-const signToken = require('../helpers/functions/signToken');
+const { signToken, verifyToken } = require('../services/jwt');
 
 exports.login = (req, res) => {
   const resBody = new ResponseBody();
@@ -15,7 +15,7 @@ exports.login = (req, res) => {
     return res.status(400).json(resBody);
   }
 
-  pg.query('SELECT * FROM users WHERE email = $1',
+  pg.query('SELECT * FROM user_ WHERE email = $1',
     [req.body.email],
     async (error, results) => {
       if (error) {
@@ -26,7 +26,7 @@ exports.login = (req, res) => {
 
       if (results.rows.length === 1) {
         if (await bcrypt.compare(req.body.password, results.rows[0].hashed_password)) {
-          const token = signToken(results.rows[0].id);
+          const token = signToken(results.rows[0].user_id);
           resBody.setSuccess();
           resBody.setMessage('Successfully logged in');
           resBody.removePayload();
@@ -47,6 +47,20 @@ exports.login = (req, res) => {
       resBody.removePayload();
       return res.status(400).json(resBody);
     });
+};
+
+exports.authGaurd = async (req, res, next) => {
+  const token = req.cookies.jwt;
+  if (!token) {
+    const resBody = new ResponseBody();
+    resBody.setMessage('You are not logged in');
+    resBody.removePayload();
+    return res.status(401).json(resBody);
+  }
+
+  const decoded = await verifyToken(token);
+  req.userId = decoded.id;
+  next();
 };
 
 exports.logout = (req, res) => {

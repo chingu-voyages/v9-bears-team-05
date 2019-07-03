@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs');
-const pg = require('../db/psql');
+const pg = require('../services/psql');
 const ValidationError = require('../helpers/classes/ValidationError');
 const ResponseBody = require('../helpers/classes/ResponseBody');
 const validator = require('../validations/user.validation');
@@ -17,7 +17,7 @@ exports.createUser = async (req, res) => {
 
   const hash = await bcrypt.hash(req.body.password, 12);
 
-  pg.query('INSERT INTO users (first_name, last_name, email, hashed_password) VALUES ($1, $2, $3, $4)',
+  pg.query('INSERT INTO user_ (first_name, last_name, email, hashed_password) VALUES ($1, $2, $3, $4)',
     [req.body.firstName, req.body.lastName, req.body.email, hash],
     (error) => {
       if (error) {

@@ -1,0 +1,32 @@
+####Get all styles
+
+GET http://localhost:3050/api/v1/styles
+
+
+### Get style with ID
+
+GET http://localhost:3050/api/v1/styles/2
+
+
+### Create a style
+
+POST http://localhost:3050/api/v1/styles
+Content-Type: application/json
+
+{
+  "name": "Test Style"
+}
+
+
+### Rename a style
+
+PATCH http://localhost:3050/api/v1/styles/4
+Content-Type: application/json
+
+{
+  "name": "Renamed Test Style"
+}
+
+### Delete a style with ID 
+
+DELETE http://localhost:3050/api/v1/styles/4
