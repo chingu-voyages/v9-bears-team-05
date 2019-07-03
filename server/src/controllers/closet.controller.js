@@ -61,6 +61,13 @@ exports.getCloset = (req, res) => {
         resBody.removePayload();
         return res.status(500).json(resBody);
       }
+
+      if (results.rowCount === 0) {
+        resBody.setMessage('Could not find the closet. Please try again later');
+        resBody.removePayload();
+        return res.status(404).json(resBody);
+      }
+
       resBody.setSuccess();
       resBody.setMessage('Successfully retrieved the closet');
       resBody.setPayload({ key: 'closet', value: results.rows[0] });

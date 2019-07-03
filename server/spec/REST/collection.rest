@@ -1,3 +1,32 @@
 ####Get all collections
 
 GET http://localhost:3050/api/v1/collections
+
+
+### Get collection with ID
+
+GET http://localhost:3050/api/v1/collections/5
+
+
+### Create a collection
+
+POST http://localhost:3050/api/v1/collections
+Content-Type: application/json
+
+{
+  "name": "Test Collection"
+}
+
+
+### Rename a collection
+
+PATCH http://localhost:3050/api/v1/collections/5
+Content-Type: application/json
+
+{
+  "name": "Renamed Collection Test"
+}
+
+### Delete a closet with ID 
+
+DELETE http://localhost:3050/api/v1/collections/5
