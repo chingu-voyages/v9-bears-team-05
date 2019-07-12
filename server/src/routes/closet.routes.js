@@ -13,4 +13,13 @@ router
   .patch(authController.authGaurd, closetController.updateCloset)
   .delete(authController.authGaurd, closetController.deleteCloset);
 
+router
+  .route('/:id/clothes')
+  .get(authController.authGaurd, closetController.getClothes)
+  .post(authController.authGaurd, closetController.addClothes);
+
+router
+  .route('/:id/clothes/:clothId')
+  .delete(authController.authGaurd, closetController.deleteCloth);
+
 module.exports = router;

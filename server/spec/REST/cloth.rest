@@ -30,3 +30,23 @@ Content-Type: application/json
 ### Delete a cloth with ID 
 
 DELETE http://localhost:3050/api/v1/clothes/4
+
+
+### Add closets
+
+POST http://localhost:3050/api/v1/clothes/3/closets
+Content-Type: application/json
+
+{
+  "closetIds": [1, 2]
+}
+
+
+### Get all clothes
+
+GET http://localhost:3050/api/v1/clothes/3/closets
+
+###Delete a cloth
+
+DELETE http://localhost:3050/api/v1/clothes/3/closets/1
+
