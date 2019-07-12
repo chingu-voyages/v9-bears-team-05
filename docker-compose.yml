@@ -4,24 +4,24 @@ services:
     restart: always
     build:
       context: ./psql
-    environment: 
+    environment:
       - POSTGRES_USER=aphrodite
       - POSTGRES_PASSWORD=aphroditepw
-    ports: 
+    ports:
       - 5432
   nginx:
     restart: always
     build:
       context: ./nginx
     ports:
-      - "3050:80"
+      - '3050:80'
   api:
     image: node:alpine
     working_dir: /app
     command: npm run dev
-    volumes: 
+    volumes:
       - ./server:/app
-    environment: 
+    environment:
       - PORT=5000
       - PG_USER=aphrodite
       - PG_HOST=postgres
@@ -36,6 +36,6 @@ services:
     working_dir: /app
     command: npm run dev
     ports:
-    - '3000:3000'
-    volumes: 
-    - ./client:/app
+      - '3000:3000'
+    volumes:
+      - ./client:/app
