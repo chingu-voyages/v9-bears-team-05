@@ -13,4 +13,13 @@ router
   .patch(authController.authGaurd, styleController.updateStyle)
   .delete(authController.authGaurd, styleController.deleteStyle);
 
+router
+  .route('/:id/collections')
+  .get(authController.authGaurd, styleController.getCollections)
+  .post(authController.authGaurd, styleController.addCollections);
+
+router
+  .route('/:id/collections/:collectionId')
+  .delete(authController.authGaurd, styleController.deleteCollection);
+
 module.exports = router;

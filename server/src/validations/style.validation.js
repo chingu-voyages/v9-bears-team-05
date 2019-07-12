@@ -22,3 +22,17 @@ exports.updateValidation = (body) => {
 
   return null;
 };
+
+exports.addCollectionsValidation = (body) => {
+  const { collectionIds } = body;
+
+  if (!collectionIds) {
+    return new ValidationError('Payload must contain at least the collectionIds field');
+  }
+
+  if (!collectionIds === 'object' || !(collectionIds instanceof Array)) {
+    return new ValidationError('The collectionIds must be of type array');
+  }
+
+  return null;
+};

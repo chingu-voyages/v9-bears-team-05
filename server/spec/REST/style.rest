@@ -30,3 +30,22 @@ Content-Type: application/json
 ### Delete a style with ID 
 
 DELETE http://localhost:3050/api/v1/styles/4
+
+
+### Add collections
+
+POST http://localhost:3050/api/v1/styles/2/collections
+Content-Type: application/json
+
+{
+  "collectionIds": [1, 2]
+}
+
+
+### Get all collections
+
+GET http://localhost:3050/api/v1/styles/2/collections
+
+###Delete a collection
+
+DELETE http://localhost:3050/api/v1/styles/2/collections/2
