@@ -49,3 +49,23 @@ GET http://localhost:3050/api/v1/styles/2/collections
 ###Delete a collection
 
 DELETE http://localhost:3050/api/v1/styles/2/collections/2
+
+
+### Add clothes
+
+POST http://localhost:3050/api/v1/styles/2/clothes
+Content-Type: application/json
+
+{
+  "clothIds": [1, 2]
+}
+
+
+### Get all clothes
+
+GET http://localhost:3050/api/v1/styles/2/clothes
+
+###Delete a cloth
+
+DELETE http://localhost:3050/api/v1/styles/2/clothes/2
+

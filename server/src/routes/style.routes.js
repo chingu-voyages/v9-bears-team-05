@@ -22,4 +22,13 @@ router
   .route('/:id/collections/:collectionId')
   .delete(authController.authGaurd, styleController.deleteCollection);
 
+router
+  .route('/:id/clothes')
+  .get(authController.authGaurd, styleController.getClothes)
+  .post(authController.authGaurd, styleController.addClothes);
+
+router
+  .route('/:id/clothes/:clothId')
+  .delete(authController.authGaurd, styleController.deleteCloth);
+
 module.exports = router;
