@@ -13,4 +13,13 @@ router
   .patch(authController.authGaurd, collController.updateCollection)
   .delete(authController.authGaurd, collController.deleteCollection);
 
+router
+  .route('/:id/looks')
+  .get(authController.authGaurd, collController.getLooks)
+  .post(authController.authGaurd, collController.addLooks);
+
+router
+  .route('/:id/looks/:lookId')
+  .delete(authController.authGaurd, collController.deleteLook);
+
 module.exports = router;

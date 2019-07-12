@@ -22,3 +22,17 @@ exports.updateValidation = (body) => {
 
   return null;
 };
+
+exports.addClosetsValidation = (body) => {
+  const { closetIds } = body;
+
+  if (!closetIds) {
+    return new ValidationError('Payload must contain at least the closetIds field');
+  }
+
+  if (!closetIds === 'object' || !(closetIds instanceof Array)) {
+    return new ValidationError('The closetIds must be of type array');
+  }
+
+  return null;
+};

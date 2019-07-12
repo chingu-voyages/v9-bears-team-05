@@ -42,17 +42,20 @@ CREATE TABLE cloth
 CREATE TABLE cloth_closet_mapping
 (
   cloth_id INTEGER NOT NULL REFERENCES cloth(cloth_id),
-  closet_id INTEGER NOT NULL REFERENCES closet(closet_id)
+  closet_id INTEGER NOT NULL REFERENCES closet(closet_id),
+  UNIQUE (cloth_id, closet_id)
 );
 
 CREATE TABLE cloth_style_mapping
 (
   cloth_id INTEGER NOT NULL REFERENCES cloth(cloth_id),
-  style_id INTEGER NOT NULL REFERENCES style(style_id)
+  style_id INTEGER NOT NULL REFERENCES style(style_id),
+  UNIQUE (cloth_id, style_id)
 );
 
 CREATE TABLE style_collection_mapping
 (
   style_id INTEGER NOT NULL REFERENCES style(style_id),
-  collection_id INTEGER NOT NULL REFERENCES collection_(collection_id)
+  collection_id INTEGER NOT NULL REFERENCES collection_(collection_id),
+  UNIQUE (style_id, collection_id)
 )

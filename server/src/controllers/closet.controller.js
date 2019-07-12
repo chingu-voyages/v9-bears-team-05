@@ -129,3 +129,94 @@ exports.deleteCloset = (req, res) => {
       res.json(resBody);
     });
 };
+
+exports.addClothes = (req, res) => {
+  const resBody = new ResponseBody();
+  const validationResults = validator.addClothesValidation(req.body);
+  if (validationResults instanceof ValidationError) {
+    resBody.setMessage(validationResults.message);
+    resBody.removePayload();
+    return res.status(400).json(resBody);
+  }
+
+  Promise.all(
+    req.body.clothIds.map(clothId => pg.query(
+      'INSERT INTO cloth_closet_mapping (cloth_id, closet_id) VALUES ($1, $2)',
+      [clothId, req.params.id],
+    )),
+  )
+    .then(() => {
+      resBody.setSuccess();
+      resBody.setMessage('Successfully added the relations');
+      resBody.removePayload();
+      res.json(resBody);
+    })
+    .catch(() => {
+      resBody.setMessage('Error adding the relations. Please try again later.');
+      resBody.removePayload();
+      res.status(500).json(resBody);
+    });
+};
+
+exports.getClothes = (req, res) => {
+  const resBody = new ResponseBody();
+  Promise.all([
+    pg.query(
+      'SELECT closet_name FROM closet WHERE user_id = $1 AND closet_id = $2',
+      [req.userId, req.params.id],
+    ),
+    pg.query(
+      'SELECT cloth_name, c.cloth_id FROM cloth_closet_mapping map INNER JOIN cloth c ON c.cloth_id = map.cloth_id WHERE closet_id = $1',
+      [req.params.id],
+    ),
+  ]).then((results) => {
+    const closetResults = results.find(result => result.fields[0].name === 'closet_name');
+
+    if (closetResults.rowCount === 0) {
+      resBody.setMessage(
+        'Could not find the closet. Please try again later',
+      );
+      resBody.removePayload();
+      return res.status(404).json(resBody);
+    }
+
+    const clothResults = results.find(result => result.fields[0].name === 'cloth_name');
+
+    resBody.setSuccess();
+    resBody.setMessage('Successfully retrieved the closet');
+    resBody.setPayload({ key: 'clothes', value: clothResults.rows });
+    resBody.setPayload({ key: 'closet', value: closetResults.rows[0] });
+    res.json(resBody);
+  }).catch(() => {
+    resBody.setMessage('Error retreiving the closet. Please try again later.');
+    resBody.removePayload();
+    res.status(500).json(resBody);
+  });
+};
+
+exports.deleteCloth = (req, res) => {
+  const resBody = new ResponseBody();
+  pg
+    .query('DELETE FROM cloth_closet_mapping WHERE cloth_id = $1 AND closet_id = $2', [req.params.clothId, req.params.id])
+    .then((results) => {
+      if (results.rowCount === 0) {
+        resBody.setMessage(
+          'Could not find the relation. Please try again later',
+        );
+        resBody.removePayload();
+        return res.status(404).json(resBody);
+      }
+
+      resBody.setSuccess();
+      resBody.setMessage('Successfully deleted the relation');
+      resBody.removePayload();
+      res.json(resBody);
+    })
+    .catch(() => {
+      resBody.setMessage(
+        'Error deleting the relation. Please try again later',
+      );
+      resBody.removePayload();
+      return res.status(500).json(resBody);
+    });
+};

@@ -22,3 +22,17 @@ exports.updateValidation = (body) => {
 
   return null;
 };
+
+exports.addLooksValidation = (body) => {
+  const { lookIds } = body;
+
+  if (!lookIds) {
+    return new ValidationError('Payload must contain at least the lookIds field');
+  }
+
+  if (!lookIds === 'object' || !(lookIds instanceof Array)) {
+    return new ValidationError('The lookIds must be of type array');
+  }
+
+  return null;
+};

@@ -5,7 +5,7 @@ GET http://localhost:3050/api/v1/collections
 
 ### Get collection with ID
 
-GET http://localhost:3050/api/v1/collections/5
+GET http://localhost:3050/api/v1/collections/3
 
 
 ### Create a collection
@@ -30,3 +30,22 @@ Content-Type: application/json
 ### Delete a closet with ID 
 
 DELETE http://localhost:3050/api/v1/collections/5
+
+
+### Add looks
+
+POST http://localhost:3050/api/v1/collections/3/looks
+Content-Type: application/json
+
+{
+  "lookIds": [1, 2]
+}
+
+
+### Get all looks
+
+GET http://localhost:3050/api/v1/collections/3/looks
+
+###Delete a look
+
+DELETE http://localhost:3050/api/v1/collections/3/looks/2
