@@ -18,7 +18,7 @@ spec:
             claimName: database-persistent-volume-claim
       containers:
         - name: postgres
-          image: postgres
+          image: sherondale/aphrodite-database
           env:
             - name: PGPASSWORD
               valueFrom:
