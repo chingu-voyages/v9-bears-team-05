@@ -7,5 +7,5 @@ docker push sherondale/aphrodite-client:$SHA
 docker push sherondale/aphrodite-server:$SHA
 
 kubectl apply -f k8s
-kubectl set image deployments/aphrodite-server-deployment aphrodite-server=sherondale/aphrodite-server:$SHA
-kubectl set image deployments/aphrodite-client-deployment aphrodite-client=sherondale/aphrodite-client:$SHA
+kubectl set image deployments/server-deployment aphrodite-server=sherondale/aphrodite-server:$SHA
+kubectl set image deployments/client-deployment aphrodite-client=sherondale/aphrodite-client:$SHA
