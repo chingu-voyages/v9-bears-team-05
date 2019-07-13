@@ -1,0 +1,18 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: aphrodite-sherondale-me-tls
+spec:
+  secretName: aphrodite-sherondale-me
+  issuerRef:
+    name: letsencrypt-aphrodite
+    kind: ClusterIssuer
+  commonName: aphrodite.sherondale.me
+  dnsNames:
+    - aphrodite.sherondale.me
+  acme:
+    config:
+      - http01:
+          ingressClass: nginx
+        domains:
+          - aphrodite.sherondale.me
