@@ -55,6 +55,7 @@ export default {
    ** Axios module configuration
    */
   axios: {
+    baseURL: process.env.BASE_URL || 'http://localhost:3050/api/v1/'
     // See https://github.com/nuxt-community/axios-module#options
   },
 

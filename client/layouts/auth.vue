@@ -34,24 +34,6 @@
     <v-toolbar clipped-left fixed app>
       <v-toolbar-side-icon @click="drawer = !drawer" />
       <v-toolbar-title v-text="title" />
-      <v-spacer />
-      <v-menu offset-y>
-        <template v-slot:activator="{ on }">
-          <v-btn icon v-on="on">
-            <v-icon>person</v-icon>
-          </v-btn>
-        </template>
-        <v-list>
-          <v-list-tile @click="logout">
-            <v-list-tile-action>
-              <v-icon>exit_to_app</v-icon>
-            </v-list-tile-action>
-            <v-list-tile-content>
-              <v-list-tile-title v-text="'Logout'" />
-            </v-list-tile-content>
-          </v-list-tile>
-        </v-list>
-      </v-menu>
     </v-toolbar>
     <v-content>
       <v-container>
@@ -78,31 +60,6 @@ export default {
       ],
       miniVariant: false,
       title: 'Aphrodite'
-    }
-  },
-  mounted() {
-    this.$store
-      .dispatch('initAuth')
-      .then(res => {
-        if (res.error === false) this.$store.commit('SET_AUTHENTICATED', true)
-      })
-      .catch(() => {
-        this.$store.commit('SET_AUTHENTICATED', false)
-        this.$router.push('/auth')
-      })
-  },
-  methods: {
-    logout() {
-      this.$store
-        .dispatch('logout')
-        .then(res => {
-          this.$store.commit('SET_AUTHENTICATED', false)
-          this.$router.push('/auth')
-        })
-        .catch(() => {
-          this.$store.commit('SET_AUTHENTICATED', false)
-          this.$router.push('/auth')
-        })
     }
   }
 }

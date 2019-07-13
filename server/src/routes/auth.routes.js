@@ -9,4 +9,8 @@ router
   .route('/logout')
   .get(authController.logout);
 
+router
+  .route('/yahallo')
+  .get(authController.authGaurd, authController.isAuthenticated);
+
 module.exports = router;
