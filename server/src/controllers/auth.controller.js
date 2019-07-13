@@ -71,3 +71,11 @@ exports.logout = (req, res) => {
   resBody.removePayload();
   res.status(200).json(resBody);
 };
+
+exports.isAuthenticated = (req, res) => {
+  const resBody = new ResponseBody();
+  resBody.setSuccess();
+  resBody.setMessage('You are logged in');
+  resBody.setPayload({ key: 'id', value: req.userId });
+  res.status(200).json(resBody);
+};

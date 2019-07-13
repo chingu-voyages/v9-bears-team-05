@@ -30,7 +30,7 @@ services:
       - PG_PORT=5432
       - JWT_SECRET=thissecretshouldbeatleastthirtytwocharacterslong
       - JWT_EXPIRES_IN=90
-      - ORIGIN=*
+      - ORIGIN=http://localhost:3000
   client:
     image: node:alpine
     working_dir: /app
