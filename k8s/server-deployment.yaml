@@ -18,6 +18,19 @@ spec:
           ports:
             - containerPort: 5000
           env:
+            - name: NODE_ENV
+              value: production
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: jwtsecret
+                  key: JWT_SECRET
+            - name: JWT_EXPIRES_IN
+              value: "1"
+            - name: ORIGIN
+              value: https://aphrodite.sherondale.me
+            - name: PORT
+              value: "5000"
             - name: PG_HOST
               value: postgres-cluster-ip-service
             - name: PG_PORT
