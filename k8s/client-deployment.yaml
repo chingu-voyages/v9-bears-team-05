@@ -17,3 +17,6 @@ spec:
           image: sherondale/aphrodite-client
           ports:
             - containerPort: 3000
+          env:
+            - name: BASE_URL
+              value: https://aphrodite.sherondale.me/api/v1/
