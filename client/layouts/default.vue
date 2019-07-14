@@ -1,5 +1,5 @@
 <template>
-  <v-app dark>
+  <v-app>
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
@@ -74,6 +74,11 @@ export default {
           icon: 'apps',
           title: 'Welcome',
           to: '/'
+        },
+        {
+          icon: 'collections',
+          title: 'Closets',
+          to: '/closets'
         }
       ],
       miniVariant: false,

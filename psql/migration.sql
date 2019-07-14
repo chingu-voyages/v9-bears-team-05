@@ -13,7 +13,7 @@ CREATE TABLE closet
   closet_id SERIAL PRIMARY KEY,
   closet_name VARCHAR,
   user_id INTEGER NOT NULL REFERENCES user_(user_id) ON DELETE CASCADE,
-  parent_closet INTEGER DEFAULT NULL REFERENCES closet(closet_id)
+  parent_closet INTEGER DEFAULT NULL REFERENCES closet(closet_id) ON DELETE CASCADE
 );
 
 CREATE TABLE collection_

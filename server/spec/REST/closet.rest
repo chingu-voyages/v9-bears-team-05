@@ -29,7 +29,7 @@ Content-Type: application/json
 
 ### Delete a closet with ID 
 
-DELETE http://localhost:3050/api/v1/closets/9
+DELETE http://localhost:3050/api/v1/closets/8
 
 
 ### Add clothes
