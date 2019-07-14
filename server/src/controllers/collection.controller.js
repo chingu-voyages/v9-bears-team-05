@@ -6,7 +6,7 @@ const validator = require('../validations/collection.validation');
 exports.getAllCollections = (req, res) => {
   const resBody = new ResponseBody();
   pg.query(
-    'SELECT * FROM collection_ WHERE user_id = $1',
+    'SELECT COUNT(style_id) looks_count, c.collection_id, collection_name FROM collection_ c  LEFT JOIN style_collection_mapping map ON c.collection_id = map.collection_id WHERE user_id = $1 GROUP BY c.collection_id',
     [req.userId],
     (error, results) => {
       if (error) {

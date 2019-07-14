@@ -4,5 +4,8 @@ export default {
   },
   getClosets(state) {
     return [...state.closets]
+  },
+  getCollections(state) {
+    return [...state.collections]
   }
 }
