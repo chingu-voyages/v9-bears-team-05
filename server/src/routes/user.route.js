@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const userController = require('../controllers/user.controller');
+const authController = require('../controllers/auth.controller');
 
 router
   .route('/')
-  .get(userController.getAllUsers)
+  .get(authController.authGaurd, userController.getUser)
   .post(userController.createUser);
 
 router
