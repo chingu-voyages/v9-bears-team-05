@@ -62,6 +62,47 @@ export default {
         }
       })
   },
+  fetchCollections(context) {
+    this.$axios
+      .$get('collections', { withCredentials: true })
+      .then(res => {
+        if (res.error === false) {
+          context.commit('SET_COLLECTIONS', res.payload.collections)
+        }
+      })
+      .catch(() => {})
+  },
+  createCollection(context, name) {
+    this.$axios
+      .$post('/collections', { name }, { withCredentials: true })
+      .then(res => {
+        if (res.error === false) {
+          context.dispatch('fetchCollections')
+        }
+      })
+  },
+  editCollection(context, payload) {
+    this.$axios
+      .$patch(
+        `/collections/${payload.id}`,
+        { name: payload.name },
+        { withCredentials: true }
+      )
+      .then(res => {
+        if (res.error === false) {
+          context.dispatch('fetchCollections')
+        }
+      })
+  },
+  deleteCollection(context, id) {
+    this.$axios
+      .$delete(`/collections/${id}`, { withCredentials: true })
+      .then(res => {
+        if (res.error === false) {
+          context.dispatch('fetchCollections')
+        }
+      })
+  },
   logout(context) {
     return this.$axios.$get('auth/logout', { withCredentials: true })
   }

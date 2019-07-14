@@ -4,5 +4,8 @@ export default {
   },
   SET_CLOSETS(state, payload) {
     state.closets = payload
+  },
+  SET_COLLECTIONS(state, payload) {
+    state.collections = payload
   }
 }
