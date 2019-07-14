@@ -5,7 +5,7 @@ const validator = require('../validations/closet.validation');
 
 exports.getAllClosets = (req, res) => {
   const resBody = new ResponseBody();
-  pg.query('SELECT * FROM closet WHERE user_id = $1', [req.userId], (error, results) => {
+  pg.query('SELECT COUNT(cloth_id) clothes_count, c.closet_id, closet_name, parent_closet FROM closet c LEFT JOIN cloth_closet_mapping map ON c.closet_id = map.closet_id WHERE user_id = $1 GROUP BY c.closet_id', [req.userId], (error, results) => {
     if (error) {
       resBody.setMessage('Error retrieving all closets. Please try again later');
       resBody.removePayload();
