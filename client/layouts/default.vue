@@ -38,11 +38,11 @@
       <v-menu offset-y>
         <template v-slot:activator="{ on }">
           <v-btn icon v-on="on">
-            <v-icon>person</v-icon>
+            <v-icon>more_vert</v-icon>
           </v-btn>
         </template>
         <v-list>
-          <v-list-tile @click="logout">
+          <v-list-tile @click.stop="logout">
             <v-list-tile-action>
               <v-icon>exit_to_app</v-icon>
             </v-list-tile-action>
@@ -68,15 +68,15 @@
 export default {
   data() {
     return {
-      drawer: false,
+      drawer: true,
       items: [
         {
-          icon: 'apps',
-          title: 'Welcome',
+          icon: 'person',
+          title: 'Profile',
           to: '/'
         },
         {
-          icon: 'collections',
+          icon: 'apps',
           title: 'Closets',
           to: '/closets'
         },
@@ -86,7 +86,7 @@ export default {
           to: '/collections'
         }
       ],
-      miniVariant: false,
+      miniVariant: true,
       title: 'Aphrodite'
     }
   },

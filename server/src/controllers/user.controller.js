@@ -33,7 +33,42 @@ exports.createUser = async (req, res) => {
     });
 };
 
-exports.getUser = () => {};
+exports.getUser = (req, res) => {
+  const resBody = new ResponseBody();
+  const userQuery = pg.query('SELECT first_name, last_name, avatar_url FROM user_ WHERE user_id = $1', [req.userId]);
+  const closetQuery = pg.query('SELECT count(closet_id) closets_count FROM closet WHERE user_id = $1', [req.userId]);
+  const collectionQuery = pg.query('SELECT count(collection_id) collections_count FROM collection_ WHERE user_id = $1', [req.userId]);
+  const looksQuery = pg.query('SELECT count(style_id) looks_count FROM style WHERE user_id = $1', [req.userId]);
+  const clothesQuery = pg.query('SELECT count(cloth_id) clothes_count FROM cloth WHERE user_id = $1', [req.userId]);
+  Promise
+    .all([userQuery, closetQuery, collectionQuery, looksQuery, clothesQuery])
+    .then((results) => {
+      const userResult = results.find(result => result.fields[0].name === 'first_name');
+      if (userResult.rowCount === 0) {
+        resBody.setMessage(
+          'Could not find the user. Please try again later',
+        );
+        resBody.removePayload();
+        return res.status(404).json(resBody);
+      }
+      const closetResult = results.find(result => result.fields[0].name === 'closets_count');
+      const collectionResult = results.find(result => result.fields[0].name === 'collections_count');
+      const lookResult = results.find(result => result.fields[0].name === 'looks_count');
+      const clothesResult = results.find(result => result.fields[0].name === 'clothes_count');
+      resBody.setSuccess();
+      resBody.setMessage('Successfully retrieved user data');
+      resBody.setPayload({ key: 'user', value: userResult.rows[0] });
+      resBody.setPayload({ key: 'closets_count', value: closetResult.rows[0].closets_count });
+      resBody.setPayload({ key: 'collections_count', value: collectionResult.rows[0].collections_count });
+      resBody.setPayload({ key: 'looks_count', value: lookResult.rows[0].looks_count });
+      resBody.setPayload({ key: 'clothes_count', value: clothesResult.rows[0].clothes_count });
+      res.json(resBody);
+    }).catch(() => {
+      resBody.setMessage('Error retrieving user data. Please try again later');
+      resBody.removePayload();
+      return res.status(500).json(resBody);
+    });
+};
 
 exports.updateUser = () => {};
 

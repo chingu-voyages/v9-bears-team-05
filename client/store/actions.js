@@ -5,6 +5,13 @@ export default {
     }
     return Promise.resolve()
   },
+  fetchUserData(context) {
+    this.$axios.$get('/users', { withCredentials: true }).then(res => {
+      if (res.error === false) {
+        context.commit('SET_USER_DATA', res.payload)
+      }
+    })
+  },
   fetchClosets(context) {
     this.$axios
       .$get('closets', { withCredentials: true })
