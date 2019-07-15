@@ -29,8 +29,8 @@ exports.createCloth = (req, res) => {
     return res.status(400).json(resBody);
   }
 
-  pg.query('INSERT INTO cloth (cloth_name, user_id) VALUES ($1, $2)',
-    [req.body.name, req.userId],
+  pg.query('INSERT INTO cloth (cloth_name, user_id, image_url) VALUES ($1, $2, $3)',
+    [req.body.name, req.userId, req.body.imageUrl],
     (error) => {
       if (error) {
         resBody.setMessage(error.message);

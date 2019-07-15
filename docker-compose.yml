@@ -31,6 +31,8 @@ services:
       - JWT_SECRET=thissecretshouldbeatleastthirtytwocharacterslong
       - JWT_EXPIRES_IN=90
       - ORIGIN=http://localhost:3000
+      - AWS_ACCESS_KEY_ID=x
+      - AWS_SECRET_ACCESS_x
   client:
     image: node:alpine
     working_dir: /app

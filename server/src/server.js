@@ -12,6 +12,7 @@ const closetRoutes = require('./routes/closet.routes');
 const collRoutes = require('./routes/collection.routes');
 const styleRoutes = require('./routes/style.routes');
 const clothRoutes = require('./routes/cloth.routes');
+const uploadRoutes = require('./routes/upload.routes');
 
 const app = express();
 
@@ -42,6 +43,7 @@ app.use('/closets/', closetRoutes);
 app.use('/collections/', collRoutes);
 app.use('/styles/', styleRoutes);
 app.use('/clothes/', clothRoutes);
+app.use('/upload/', uploadRoutes);
 
 app.listen(config.port, (error) => {
   /* eslint-disable no-console */

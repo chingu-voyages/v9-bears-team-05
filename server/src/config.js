@@ -9,4 +9,6 @@ module.exports = {
   jwtExpiration: process.env.JWT_EXPIRES_IN || 90,
   env: process.env.NODE_ENV || 'development',
   origin: process.env.ORIGIN || 'http://localhost:3000',
+  awsAccessyKeyId: process.env.AWS_ACCESS_KEY_ID || 'x',
+  awsSecretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || 'x',
 };
