@@ -44,3 +44,13 @@ spec:
                 secretKeyRef:
                   name: pgpassword
                   key: PGPASSWORD
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: awsid
+                  key: AWS_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: awssecret
+                  key: AWS_SECRET
