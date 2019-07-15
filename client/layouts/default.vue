@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app :class="{ hidden: isHidden }">
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
@@ -68,6 +68,7 @@
 export default {
   data() {
     return {
+      isHidden: true,
       drawer: true,
       items: [
         {
@@ -95,6 +96,7 @@ export default {
       .dispatch('initAuth')
       .then(res => {
         if (res.error === false) this.$store.commit('SET_AUTHENTICATED', true)
+        this.isHidden = false
       })
       .catch(() => {
         this.$store.commit('SET_AUTHENTICATED', false)
@@ -117,3 +119,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.hidden {
+  display: none;
+}
+</style>
