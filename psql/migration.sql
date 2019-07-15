@@ -35,7 +35,7 @@ CREATE TABLE cloth
 (
   cloth_id SERIAL PRIMARY KEY,
   cloth_name VARCHAR,
-  image_url VARCHAR DEFAULT NULL,
+  image_url VARCHAR,
   user_id INTEGER NOT NULL REFERENCES user_(user_id) ON DELETE CASCADE
 );
 

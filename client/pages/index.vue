@@ -89,7 +89,7 @@
                     </div>
                   </v-card-title>
                   <v-card-actions>
-                    <v-btn flat dark>Go</v-btn>
+                    <v-btn flat dark to="/clothes">Go</v-btn>
                   </v-card-actions>
                 </v-card>
               </v-flex>

@@ -3,6 +3,7 @@ export default () => ({
   user: {},
   closets: [],
   collections: [],
+  clothes: [],
   closetsCount: 0,
   collectionsCount: 0,
   looksCount: 0,

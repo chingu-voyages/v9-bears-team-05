@@ -7,5 +7,8 @@ export default {
   },
   getCollections(state) {
     return [...state.collections]
+  },
+  getClothes(state) {
+    return [...state.clothes]
   }
 }

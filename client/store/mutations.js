@@ -14,5 +14,8 @@ export default {
   },
   SET_COLLECTIONS(state, payload) {
     state.collections = payload
+  },
+  SET_CLOTHES(state, payload) {
+    state.clothes = payload
   }
 }

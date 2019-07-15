@@ -76,16 +76,16 @@ VALUES
   ('My Fav', '2');
 
 INSERT INTO cloth
-  (cloth_name, user_id)
+  (cloth_name, user_id, image_url)
 VALUES
-  ('Casual Grey Shirt', '1');
+  ('Casual Grey Shirt', '1', 'https://static6.cilory.com/187844-thickbox_default/levis-casual-steel-grey-shirt.jpg');
 
 INSERT INTO cloth
-  (cloth_name, user_id)
+  (cloth_name, user_id, image_url)
 VALUES
-  ('Crop Top', '1');
+  ('Crop Top', '1','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0oV90gXd4YxFZsVW-VkCU0KVVgnTE7XZuDro6Lip-rNBxiA3M');
 
 INSERT INTO cloth
-  (cloth_name, user_id)
+  (cloth_name, user_id, image_url)
 VALUES
-  ('Denim Jeans', '1');
+  ('Denim Jeans', '1', 'https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1533044469-saintlaurent-1533044371.jpg');

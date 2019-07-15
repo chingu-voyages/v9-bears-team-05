@@ -85,6 +85,11 @@ export default {
           icon: 'collections',
           title: 'Collections',
           to: '/collections'
+        },
+        {
+          icon: 'accessibility',
+          title: 'Clothes',
+          to: '/clothes'
         }
       ],
       miniVariant: true,
