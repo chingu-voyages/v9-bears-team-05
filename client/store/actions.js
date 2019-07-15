@@ -14,7 +14,7 @@ export default {
   },
   fetchClosets(context) {
     this.$axios
-      .$get('closets', { withCredentials: true })
+      .$get('/closets', { withCredentials: true })
       .then(res => {
         if (res.error === false) {
           const closets = res.payload.closets.filter(
@@ -71,7 +71,7 @@ export default {
   },
   fetchCollections(context) {
     this.$axios
-      .$get('collections', { withCredentials: true })
+      .$get('/collections', { withCredentials: true })
       .then(res => {
         if (res.error === false) {
           context.commit('SET_COLLECTIONS', res.payload.collections)
@@ -107,6 +107,59 @@ export default {
       .then(res => {
         if (res.error === false) {
           context.dispatch('fetchCollections')
+        }
+      })
+  },
+  fetchClothes(context) {
+    this.$axios
+      .$get('/clothes', { withCredentials: true })
+      .then(res => {
+        if (res.error === false) {
+          context.commit('SET_CLOTHES', res.payload.clothes)
+        }
+      })
+      .catch(() => {})
+  },
+  async createCloth(context, { name, imageFile }) {
+    const uploadConfig = await this.$axios.$get('/upload', {
+      withCredentials: true
+    })
+    await this.$axios.$put(uploadConfig.payload.url, imageFile, {
+      headers: {
+        'Content-Type': imageFile.type
+      }
+    })
+    this.$axios
+      .$post(
+        '/clothes',
+        { name, imageUrl: uploadConfig.payload.key },
+        { withCredentials: true }
+      )
+      .then(res => {
+        if (res.error === false) {
+          context.dispatch('fetchClothes')
+        }
+      })
+  },
+  editCloth(context, payload) {
+    this.$axios
+      .$patch(
+        `/clothes/${payload.id}`,
+        { name: payload.name },
+        { withCredentials: true }
+      )
+      .then(res => {
+        if (res.error === false) {
+          context.dispatch('fetchClothes')
+        }
+      })
+  },
+  deleteCloth(context, id) {
+    this.$axios
+      .$delete(`/clothes/${id}`, { withCredentials: true })
+      .then(res => {
+        if (res.error === false) {
+          context.dispatch('fetchClothes')
         }
       })
   },
