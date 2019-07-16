@@ -6445,6 +6445,11 @@ kleur@^3.0.2:
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-3.0.3.tgz#a79c9ecc86ee1ce3fa6206d1216c501f147fc07e"
   integrity sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==
 
+konva@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/konva/-/konva-3.4.0.tgz#71caa4c82f593710affa47d66fe39b1ee9df51cf"
+  integrity sha512-UBQPix4oStWHw32xgIeM/UygtKHBta6HYrPyfGIlnieQYgJZG7fjG4+TUkq6atY+DCs8jroEU0/a94N9dIgOdg==
+
 last-call-webpack-plugin@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/last-call-webpack-plugin/-/last-call-webpack-plugin-3.0.0.tgz#9742df0e10e3cf46e5c0381c2de90d3a7a2d7555"
@@ -10841,6 +10846,11 @@ vue-jest@^3.0.3:
     source-map "^0.5.6"
     tsconfig "^7.0.0"
     vue-template-es2015-compiler "^1.6.0"
+
+vue-konva@^2.0.7:
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/vue-konva/-/vue-konva-2.0.7.tgz#8b6ac502eef2b2ff9514fc7ea8e4ceaa6829259c"
+  integrity sha512-JTEMVN5Rn7nelUxjr0KwiNyOwZ/Ik7C8+fomT/bI3g48aFL2HXOy934g+6bqbnUICUVbwBTVeewqRj3PZsO4zg==
 
 vue-loader@^15.7.0:
   version "15.7.0"
