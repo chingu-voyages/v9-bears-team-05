@@ -17,5 +17,8 @@ export default {
   },
   SET_CLOTHES(state, payload) {
     state.clothes = payload
+  },
+  SET_LOOKS(state, payload) {
+    state.looks = payload
   }
 }

@@ -163,7 +163,74 @@ export default {
         }
       })
   },
-  logout(context) {
+  fetchLooks(context) {
+    this.$axios
+      .$get('/looks', { withCredentials: true })
+      .then(res => {
+        if (res.error === false) {
+          context.commit('SET_LOOKS', res.payload.looks)
+        }
+      })
+      .catch(() => {})
+  },
+  async createLook(context, { name, imageFile }) {
+    const uploadConfig = await this.$axios.$get('/upload', {
+      withCredentials: true
+    })
+    const imageBuf = Buffer.from(
+      imageFile.replace(/^data:image\/\w+;base64,/, ''),
+      'base64'
+    )
+    await this.$axios.$put(uploadConfig.payload.url, imageBuf, {
+      headers: {
+        'Content-Type': 'image/png'
+      }
+    })
+    this.$axios
+      .$post(
+        '/looks',
+        { name, imageUrl: uploadConfig.payload.key },
+        { withCredentials: true }
+      )
+      .then(res => {
+        if (res.error === false) {
+          context.dispatch('fetchLooks')
+        }
+      })
+  },
+  async editLook(context, payload) {
+    const uploadConfig = await this.$axios.$get('/upload', {
+      withCredentials: true
+    })
+    const imageBuf = Buffer.from(
+      payload.imageFile.replace(/^data:image\/\w+;base64,/, ''),
+      'base64'
+    )
+    await this.$axios.$put(uploadConfig.payload.url, imageBuf, {
+      headers: {
+        'Content-Type': 'image/png'
+      }
+    })
+    this.$axios
+      .$patch(
+        `/looks/${payload.id}`,
+        { name: payload.name, imageUrl: uploadConfig.payload.key },
+        { withCredentials: true }
+      )
+      .then(res => {
+        if (res.error === false) {
+          context.dispatch('fetchLooks')
+        }
+      })
+  },
+  deleteLook(context, id) {
+    this.$axios.$delete(`/looks/${id}`, { withCredentials: true }).then(res => {
+      if (res.error === false) {
+        context.dispatch('fetchLooks')
+      }
+    })
+  },
+  logout() {
     return this.$axios.$get('auth/logout', { withCredentials: true })
   }
 }

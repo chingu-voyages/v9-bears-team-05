@@ -10,5 +10,8 @@ export default {
   },
   getClothes(state) {
     return [...state.clothes]
+  },
+  getLooks(state) {
+    return [...state.looks]
   }
 }
