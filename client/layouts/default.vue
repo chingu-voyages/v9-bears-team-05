@@ -90,6 +90,11 @@ export default {
           icon: 'accessibility',
           title: 'Clothes',
           to: '/clothes'
+        },
+        {
+          icon: 'visibility',
+          title: 'Looks',
+          to: '/looks'
         }
       ],
       miniVariant: true,

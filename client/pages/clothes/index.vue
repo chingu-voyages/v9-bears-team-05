@@ -74,8 +74,11 @@
       <v-flex v-for="cloth in clothes" :key="cloth.cloth_id" sm6 xs12 md4>
         <v-card>
           <v-card-title class="headline">{{ cloth.cloth_name }}</v-card-title>
-          <v-img :src="cloth.image_url | formatImageUrl" height="200px">
-          </v-img>
+          <v-img
+            contain
+            :src="cloth.image_url | formatImageUrl"
+            height="200px"
+          ></v-img>
 
           <v-card-actions>
             <v-spacer></v-spacer>

@@ -4,6 +4,7 @@ export default () => ({
   closets: [],
   collections: [],
   clothes: [],
+  looks: [],
   closetsCount: 0,
   collectionsCount: 0,
   looksCount: 0,
