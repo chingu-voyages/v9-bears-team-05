@@ -41,7 +41,7 @@ app.use('/users/', userRoutes);
 app.use('/auth/', authRoutes);
 app.use('/closets/', closetRoutes);
 app.use('/collections/', collRoutes);
-app.use('/styles/', styleRoutes);
+app.use('/looks/', styleRoutes);
 app.use('/clothes/', clothRoutes);
 app.use('/upload/', uploadRoutes);
 

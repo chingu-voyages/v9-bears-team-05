@@ -14,7 +14,7 @@ exports.getAllStyles = (req, res) => {
     resBody.setSuccess();
     resBody.setMessage('Successfully retrieved all styles');
     resBody.setPayload({ key: 'count', value: results.rowCount });
-    resBody.setPayload({ key: 'styles', value: results.rows });
+    resBody.setPayload({ key: 'looks', value: results.rows });
     res.json(resBody);
   });
 };
@@ -29,8 +29,8 @@ exports.createStyle = (req, res) => {
     return res.status(400).json(resBody);
   }
 
-  pg.query('INSERT INTO style (style_name, user_id) VALUES ($1, $2)',
-    [req.body.name, req.userId],
+  pg.query('INSERT INTO style (style_name, user_id, image_url) VALUES ($1, $2, $3)',
+    [req.body.name, req.userId, req.body.imageUrl],
     (error) => {
       if (error) {
         resBody.setMessage(error.message);
@@ -64,7 +64,7 @@ exports.getStyle = (req, res) => {
 
       resBody.setSuccess();
       resBody.setMessage('Successfully retrieved the style');
-      resBody.setPayload({ key: 'style', value: results.rows[0] });
+      resBody.setPayload({ key: 'look', value: results.rows[0] });
       res.json(resBody);
     });
 };
@@ -78,8 +78,8 @@ exports.updateStyle = (req, res) => {
     return res.status(400).json(resBody);
   }
 
-  pg.query('UPDATE style SET style_name = $1 WHERE user_id = $2 AND style_id = $3',
-    [req.body.name, req.userId, req.params.id],
+  pg.query('UPDATE style SET style_name = $1, image_url = $4 WHERE user_id = $2 AND style_id = $3',
+    [req.body.name, req.userId, req.params.id, req.body.imageUrl],
     (error, results) => {
       if (error) {
         resBody.setMessage(error.message);
