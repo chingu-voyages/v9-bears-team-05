@@ -26,16 +26,16 @@ CREATE TABLE collection_
 CREATE TABLE style
 (
   style_id SERIAL PRIMARY KEY,
-  style_name VARCHAR,
+  style_name VARCHAR NOT NULL,
   user_id INTEGER NOT NULL REFERENCES user_(user_id) ON DELETE CASCADE,
-  contents VARCHAR DEFAULT NULL
+  image_url VARCHAR NOT NULL
 );
 
 CREATE TABLE cloth
 (
   cloth_id SERIAL PRIMARY KEY,
-  cloth_name VARCHAR,
-  image_url VARCHAR,
+  cloth_name VARCHAR NOT NULL,
+  image_url VARCHAR NOT NULL,
   user_id INTEGER NOT NULL REFERENCES user_(user_id) ON DELETE CASCADE
 );
 
