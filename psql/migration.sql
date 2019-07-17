@@ -41,21 +41,21 @@ CREATE TABLE cloth
 
 CREATE TABLE cloth_closet_mapping
 (
-  cloth_id INTEGER NOT NULL REFERENCES cloth(cloth_id),
-  closet_id INTEGER NOT NULL REFERENCES closet(closet_id),
+  cloth_id INTEGER NOT NULL REFERENCES cloth(cloth_id) ON DELETE CASCADE,
+  closet_id INTEGER NOT NULL REFERENCES closet(closet_id) ON DELETE CASCADE,
   UNIQUE (cloth_id, closet_id)
 );
 
 CREATE TABLE cloth_style_mapping
 (
-  cloth_id INTEGER NOT NULL REFERENCES cloth(cloth_id),
-  style_id INTEGER NOT NULL REFERENCES style(style_id),
+  cloth_id INTEGER NOT NULL REFERENCES cloth(cloth_id) ON DELETE CASCADE,
+  style_id INTEGER NOT NULL REFERENCES style(style_id) ON DELETE CASCADE,
   UNIQUE (cloth_id, style_id)
 );
 
 CREATE TABLE style_collection_mapping
 (
-  style_id INTEGER NOT NULL REFERENCES style(style_id),
-  collection_id INTEGER NOT NULL REFERENCES collection_(collection_id),
+  style_id INTEGER NOT NULL REFERENCES style(style_id) ON DELETE CASCADE,
+  collection_id INTEGER NOT NULL REFERENCES collection_(collection_id) ON DELETE CASCADE,
   UNIQUE (style_id, collection_id)
 )

@@ -60,6 +60,7 @@
                   <v-list-tile
                     :key="`avatar_${collection.collection_id}`"
                     avatar
+                    @click.stop="toCollection(collection.collection_id)"
                   >
                     <v-list-tile-avatar color="red">
                       <span class="white--text headline">{{
@@ -137,15 +138,15 @@
           </v-container>
         </v-card>
       </v-flex>
-    </v-layout></v-container
-  >
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
 export default {
   filters: {
     formatLooks(value) {
-      return value === 1 ? '1 cloth' : `${value} looks`
+      return value === '1' ? '1 look' : `${value} looks`
     }
   },
   data() {
@@ -196,6 +197,9 @@ export default {
     deleteCollection() {
       this.deleteDialog = false
       this.$store.dispatch('deleteCollection', this.selectedCollectionDelete)
+    },
+    toCollection(id) {
+      this.$router.push(`/collections/${id}`)
     }
   }
 }

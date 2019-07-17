@@ -20,5 +20,10 @@ export default {
   },
   SET_LOOKS(state, payload) {
     state.looks = payload
+  },
+  SET_RELATIONAL_LOOKS(state, payload) {
+    const temp = [...state.relationalLooks]
+    temp[payload.collectionId] = payload.looks
+    state.relationalLooks = [...temp]
   }
 }

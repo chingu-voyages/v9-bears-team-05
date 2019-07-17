@@ -34,7 +34,7 @@ DELETE http://localhost:3050/api/v1/collections/5
 
 ### Add looks
 
-POST http://localhost:3050/api/v1/collections/3/looks
+POST http://localhost:3050/api/v1/collections/1/looks
 Content-Type: application/json
 
 {
@@ -44,7 +44,7 @@ Content-Type: application/json
 
 ### Get all looks
 
-GET http://localhost:3050/api/v1/collections/3/looks
+GET http://localhost:3050/api/v1/collections/1/looks
 
 ###Delete a look
 

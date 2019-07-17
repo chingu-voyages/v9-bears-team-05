@@ -59,25 +59,25 @@
                 <template v-for="closet in closets">
                   <v-list-tile :key="`avatar_${closet.closet_id}`" avatar>
                     <v-list-tile-avatar color="red">
-                      <span class="white--text headline">
-                        {{ closet.closet_name[0] }}
-                      </span>
+                      <span class="white--text headline">{{
+                        closet.closet_name[0]
+                      }}</span>
                     </v-list-tile-avatar>
 
                     <v-list-tile-content>
-                      <v-list-tile-title>{{
-                        closet.closet_name
-                      }}</v-list-tile-title>
+                      <v-list-tile-title>
+                        {{ closet.closet_name }}
+                      </v-list-tile-title>
                       <v-list-tile-sub-title>
-                        <span v-if="closet.children">{{
-                          closet.children.length | formatCategories
-                        }}</span>
+                        <span v-if="closet.children">
+                          {{ closet.children.length | formatCategories }}
+                        </span>
                         {{
                           `
-                      ${closet.clothes_count} ${
-                            closet.clothes_count === 1 ? 'cloth' : 'clothes'
+                        ${closet.clothes_count} ${
+                            closet.clothes_count === '1' ? 'cloth' : 'clothes'
                           }
-                      `
+                        `
                         }}
                       </v-list-tile-sub-title>
                     </v-list-tile-content>
@@ -149,8 +149,8 @@
           </v-container>
         </v-card>
       </v-flex>
-    </v-layout></v-container
-  >
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
