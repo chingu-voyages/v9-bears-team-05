@@ -17,23 +17,7 @@ export default {
       .$get('/closets', { withCredentials: true })
       .then(res => {
         if (res.error === false) {
-          const closets = res.payload.closets.filter(
-            closet => !closet.parent_closet
-          )
-
-          res.payload.closets.forEach(closet => {
-            if (closet.parent_closet) {
-              const parentCloset = closets.find(
-                clos => clos.closet_id === closet.parent_closet
-              )
-              if (!(parentCloset.children instanceof Array)) {
-                parentCloset.children = []
-              }
-              parentCloset.children.push(closet)
-            }
-          })
-
-          context.commit('SET_CLOSETS', closets)
+          context.commit('SET_CLOSETS', res.payload.closets)
         }
       })
       .catch(() => {})
@@ -270,6 +254,49 @@ export default {
       .then(res => {
         if (res.error === false) {
           context.dispatch('fetchRelationalLooks', payload.collectionId)
+        }
+      })
+  },
+  fetchRelationalClothes(context, id) {
+    this.$axios
+      .$get(`/closets/${id}/clothes`, { withCredentials: true })
+      .then(res => {
+        if (res.error === false) {
+          context.commit('SET_RELATIONAL_CLOTHES', {
+            clothes: res.payload.clothes,
+            closetId: id
+          })
+        }
+      })
+  },
+  addRelationalCloth(context, payload) {
+    this.$axios
+      .$post(
+        `/closets/${payload.closetId}/clothes`,
+        {
+          clothIds: payload.clothIds
+        },
+        {
+          withCredentials: true
+        }
+      )
+      .then(res => {
+        if (res.error === false) {
+          context.dispatch('fetchRelationalClothes', payload.closetId)
+        }
+      })
+      .catch(() => {
+        context.dispatch('fetchRelationalClothes', payload.closetId)
+      })
+  },
+  removeRelationalCloth(context, payload) {
+    this.$axios
+      .$delete(`/closets/${payload.closetId}/clothes/${payload.clothId}`, {
+        withCredentials: true
+      })
+      .then(res => {
+        if (res.error === false) {
+          context.dispatch('fetchRelationalClothes', payload.closetId)
         }
       })
   },

@@ -2,6 +2,34 @@
   <v-container>
     <v-layout column justify-center>
       <v-flex xs12 sm8 md6>
+        <v-dialog v-model="dialog" persistent max-width="600px">
+          <template v-slot:activator="{ on }">
+            <v-btn color="pink" dark fixed bottom right fab v-on="on">
+              <v-icon>add</v-icon>
+            </v-btn>
+          </template>
+          <v-card>
+            <v-card-title>
+              <span class="headline">New Collection</span>
+            </v-card-title>
+            <v-card-text>
+              <v-container grid-list-md>
+                <v-layout column>
+                  <v-text-field
+                    v-model="collectionName"
+                    label="Collection Name"
+                    required
+                  ></v-text-field>
+                </v-layout>
+              </v-container>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="danger" flat @click="dialog = false">Cancel</v-btn>
+              <v-btn color="primary" flat @click="createCollection">Add</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
         <v-card>
           <v-container>
             <v-card-title class="headline">Collections</v-card-title>
@@ -63,18 +91,18 @@
                     @click.stop="toCollection(collection.collection_id)"
                   >
                     <v-list-tile-avatar color="red">
-                      <span class="white--text headline">{{
-                        collection.collection_name[0]
-                      }}</span>
+                      <span class="white--text headline">
+                        {{ collection.collection_name[0] }}
+                      </span>
                     </v-list-tile-avatar>
 
                     <v-list-tile-content>
-                      <v-list-tile-title>
-                        {{ collection.collection_name }}
-                      </v-list-tile-title>
-                      <v-list-tile-sub-title>
-                        {{ collection.looks_count | formatLooks }}
-                      </v-list-tile-sub-title>
+                      <v-list-tile-title>{{
+                        collection.collection_name
+                      }}</v-list-tile-title>
+                      <v-list-tile-sub-title>{{
+                        collection.looks_count | formatLooks
+                      }}</v-list-tile-sub-title>
                     </v-list-tile-content>
                     <v-list-tile-action>
                       <v-btn
@@ -103,38 +131,6 @@
                 </template>
               </v-list>
             </v-card-text>
-            <v-dialog v-model="dialog" persistent max-width="600px">
-              <template v-slot:activator="{ on }">
-                <v-btn color="pink" dark absolute bottom right fab v-on="on">
-                  <v-icon>add</v-icon>
-                </v-btn>
-              </template>
-              <v-card>
-                <v-card-title>
-                  <span class="headline">New Collection</span>
-                </v-card-title>
-                <v-card-text>
-                  <v-container grid-list-md>
-                    <v-layout column>
-                      <v-text-field
-                        v-model="collectionName"
-                        label="Collection Name"
-                        required
-                      ></v-text-field>
-                    </v-layout>
-                  </v-container>
-                </v-card-text>
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn color="danger" flat @click="dialog = false"
-                    >Cancel</v-btn
-                  >
-                  <v-btn color="primary" flat @click="createCollection"
-                    >Add</v-btn
-                  >
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
           </v-container>
         </v-card>
       </v-flex>

@@ -31,9 +31,9 @@
             >
             <v-spacer></v-spacer>
             <v-toolbar-items>
-              <v-btn dark flat @click="modalAction">{{
-                isCreateMode ? 'Add' : 'Save'
-              }}</v-btn>
+              <v-btn dark flat @click="modalAction">
+                {{ isCreateMode ? 'Add' : 'Save' }}
+              </v-btn>
             </v-toolbar-items>
           </v-toolbar>
           <v-container fluid grid-list-lg>
@@ -281,13 +281,3 @@ export default {
   }
 }
 </script>
-
-<style lang="stylus">
-.canvas-card {
-  div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-}
-</style>

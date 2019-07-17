@@ -2,6 +2,34 @@
   <v-container>
     <v-layout column justify-center>
       <v-flex xs12 sm8 md6>
+        <v-dialog v-model="dialog" persistent max-width="600px">
+          <template v-slot:activator="{ on }">
+            <v-btn color="pink" dark fixed bottom right fab v-on="on">
+              <v-icon>add</v-icon>
+            </v-btn>
+          </template>
+          <v-card>
+            <v-card-title>
+              <span class="headline">New Closet</span>
+            </v-card-title>
+            <v-card-text>
+              <v-container grid-list-md>
+                <v-layout column>
+                  <v-text-field
+                    v-model="closetName"
+                    label="Closet Name"
+                    required
+                  ></v-text-field>
+                </v-layout>
+              </v-container>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="danger" flat @click="dialog = false">Cancel</v-btn>
+              <v-btn color="primary" flat @click="createCloset">Add</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
         <v-card>
           <v-container>
             <v-card-title class="headline">Closets</v-card-title>
@@ -57,21 +85,22 @@
                   </v-card>
                 </v-dialog>
                 <template v-for="closet in closets">
-                  <v-list-tile :key="`avatar_${closet.closet_id}`" avatar>
+                  <v-list-tile
+                    :key="`avatar_${closet.closet_id}`"
+                    avatar
+                    @click.stop="toCloset(closet.closet_id)"
+                  >
                     <v-list-tile-avatar color="red">
-                      <span class="white--text headline">{{
-                        closet.closet_name[0]
-                      }}</span>
+                      <span class="white--text headline">
+                        {{ closet.closet_name[0] }}
+                      </span>
                     </v-list-tile-avatar>
 
                     <v-list-tile-content>
-                      <v-list-tile-title>
-                        {{ closet.closet_name }}
-                      </v-list-tile-title>
+                      <v-list-tile-title>{{
+                        closet.closet_name
+                      }}</v-list-tile-title>
                       <v-list-tile-sub-title>
-                        <span v-if="closet.children">
-                          {{ closet.children.length | formatCategories }}
-                        </span>
                         {{
                           `
                         ${closet.clothes_count} ${
@@ -108,44 +137,6 @@
                 </template>
               </v-list>
             </v-card-text>
-            <v-dialog v-model="dialog" persistent max-width="600px">
-              <template v-slot:activator="{ on }">
-                <v-btn color="pink" dark absolute bottom right fab v-on="on">
-                  <v-icon>add</v-icon>
-                </v-btn>
-              </template>
-              <v-card>
-                <v-card-title>
-                  <span class="headline">New Closet</span>
-                </v-card-title>
-                <v-card-text>
-                  <v-container grid-list-md>
-                    <v-layout column>
-                      <v-text-field
-                        v-model="closetName"
-                        label="Closet Name"
-                        required
-                      ></v-text-field>
-                      <v-select
-                        v-model="parentCloset"
-                        clearable
-                        :items="closetList"
-                        item-text="closet_name"
-                        item-value="closet_id"
-                        label="Parent Closet"
-                      ></v-select>
-                    </v-layout>
-                  </v-container>
-                </v-card-text>
-                <v-card-actions>
-                  <v-spacer></v-spacer>
-                  <v-btn color="danger" flat @click="dialog = false"
-                    >Cancel</v-btn
-                  >
-                  <v-btn color="primary" flat @click="createCloset">Add</v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
           </v-container>
         </v-card>
       </v-flex>
@@ -166,7 +157,6 @@ export default {
       deleteDialog: false,
       editDialog: false,
       closetName: '',
-      parentCloset: undefined,
       selectedClosetDelete: undefined,
       selectedClosetEdit: undefined
     }
@@ -185,9 +175,8 @@ export default {
     },
     newClosetPayload() {
       const payload = {}
-      if (this.parentCloset !== undefined)
-        payload.parentId = Number.parseInt(this.parentCloset)
       payload.name = this.closetName
+      payload.parentId = undefined
       return payload
     }
   },
@@ -199,7 +188,6 @@ export default {
       this.dialog = false
       this.$store.dispatch('createCloset', this.newClosetPayload)
       this.closetName = ''
-      this.parentCloset = undefined
     },
     setEditDialog(id) {
       this.editDialog = true
@@ -223,6 +211,9 @@ export default {
     deleteCloset() {
       this.deleteDialog = false
       this.$store.dispatch('deleteCloset', this.selectedClosetDelete)
+    },
+    toCloset(id) {
+      this.$router.push(`/closets/${id}`)
     }
   }
 }
