@@ -61,19 +61,19 @@ VALUES
   ('Vacation', '2');
 
 INSERT INTO style
-  (style_name, user_id)
+  (style_name, user_id, image_url)
 VALUES
-  ('My Fav', '1');
+  ('Winter', '1', 'https://realhousewivesofmn.com/wp-content/uploads/2013/11/winter-fashion-look-one.png');
 
 INSERT INTO style
-  (style_name, user_id)
+  (style_name, user_id, image_url)
 VALUES
-  ('My Fav #2', '1');
+  ('Formal', '1', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMeD6JmGLOxOkEwVPXVRwH_uegi_0ZOdK65t5xkh13_KC82V7D');
 
 INSERT INTO style
-  (style_name, user_id)
+  (style_name, user_id, image_url)
 VALUES
-  ('My Fav', '2');
+  ('Casual', '1', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRJ8oUDbABPzux5zoUvZaVgaZs7Dhr_K2Jwc12VrGtiLPKQzHt');
 
 INSERT INTO cloth
   (cloth_name, user_id, image_url)

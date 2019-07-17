@@ -13,5 +13,13 @@ export default {
   },
   getLooks(state) {
     return [...state.looks]
+  },
+  getRelationalLooks(state) {
+    return collectionId => {
+      let looks = []
+      if (state.relationalLooks[collectionId] instanceof Array)
+        looks = [...state.relationalLooks[collectionId]]
+      return looks
+    }
   }
 }

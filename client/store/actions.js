@@ -230,6 +230,49 @@ export default {
       }
     })
   },
+  fetchRelationalLooks(context, id) {
+    this.$axios
+      .$get(`/collections/${id}/looks`, { withCredentials: true })
+      .then(res => {
+        if (res.error === false) {
+          context.commit('SET_RELATIONAL_LOOKS', {
+            looks: res.payload.looks,
+            collectionId: id
+          })
+        }
+      })
+  },
+  addRelationalLook(context, payload) {
+    this.$axios
+      .$post(
+        `/collections/${payload.collectionId}/looks`,
+        {
+          lookIds: payload.lookIds
+        },
+        {
+          withCredentials: true
+        }
+      )
+      .then(res => {
+        if (res.error === false) {
+          context.dispatch('fetchRelationalLooks', payload.collectionId)
+        }
+      })
+      .catch(() => {
+        context.dispatch('fetchRelationalLooks', payload.collectionId)
+      })
+  },
+  removeRelationalLook(context, payload) {
+    this.$axios
+      .$delete(`/collections/${payload.collectionId}/looks/${payload.lookId}`, {
+        withCredentials: true
+      })
+      .then(res => {
+        if (res.error === false) {
+          context.dispatch('fetchRelationalLooks', payload.collectionId)
+        }
+      })
+  },
   logout() {
     return this.$axios.$get('auth/logout', { withCredentials: true })
   }

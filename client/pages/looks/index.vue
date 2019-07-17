@@ -31,9 +31,9 @@
             >
             <v-spacer></v-spacer>
             <v-toolbar-items>
-              <v-btn dark flat @click="modalAction">
-                {{ isCreateMode ? 'Add' : 'Save' }}
-              </v-btn>
+              <v-btn dark flat @click="modalAction">{{
+                isCreateMode ? 'Add' : 'Save'
+              }}</v-btn>
             </v-toolbar-items>
           </v-toolbar>
           <v-container fluid grid-list-lg>
@@ -132,7 +132,6 @@ export default {
   data() {
     return {
       inputClothes: [],
-      states: ['1', '2', '3'],
       mode: 'create',
       dialog: false,
       deleteDialog: false,

@@ -178,7 +178,7 @@ exports.getLooks = (req, res) => {
       [req.userId, req.params.id],
     ),
     pg.query(
-      'SELECT style_name, s.style_id FROM style_collection_mapping map INNER JOIN style s ON s.style_id = map.style_id WHERE collection_id = $1',
+      'SELECT style_name, s.style_id, s.image_url FROM style_collection_mapping map INNER JOIN style s ON s.style_id = map.style_id WHERE collection_id = $1',
       [req.params.id],
     ),
   ]).then((results) => {
