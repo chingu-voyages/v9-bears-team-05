@@ -12,6 +12,8 @@ export default {
    */
   head: {
     title: 'Aphrodite',
+    name: 'Aphrodite',
+    description: 'Bring your cloth to life',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
