@@ -6,6 +6,7 @@ export default () => ({
   clothes: [],
   looks: [],
   relationalLooks: [],
+  relationalClothes: [],
   closetsCount: 0,
   collectionsCount: 0,
   looksCount: 0,

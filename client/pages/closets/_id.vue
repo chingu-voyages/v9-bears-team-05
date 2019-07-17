@@ -4,37 +4,37 @@
       <v-dialog v-model="deleteDialog" max-width="600px">
         <v-card>
           <v-card-title class="headline" primary-title
-            >Remove Look</v-card-title
+            >Remove Cloth</v-card-title
           >
           <v-card-text
-            >Are you sure you want to remove this look from the
-            collection?</v-card-text
+            >Are you sure you want to remove this cloth from the
+            closet?</v-card-text
           >
           <v-divider></v-divider>
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="danger" flat @click="deleteDialog = false">No</v-btn>
-            <v-btn color="primary" flat @click="removeLook">Yes</v-btn>
+            <v-btn color="primary" flat @click="removeCloth">Yes</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
       <v-dialog v-model="addDialog" persistent max-width="600px">
         <v-card>
           <v-card-title>
-            <span class="headline">Add Look</span>
+            <span class="headline">Add Cloth</span>
           </v-card-title>
           <v-card-text>
             <v-container grid-list-md>
               <v-layout column>
                 <v-select
-                  v-model="selectedLooks"
+                  v-model="selectedClothes"
                   clearable
                   multiple
                   chips
-                  :items="looks"
-                  item-text="style_name"
-                  item-value="style_id"
-                  label="Select Looks"
+                  :items="clothes"
+                  item-text="cloth_name"
+                  item-value="cloth_id"
+                  label="Select Clothes"
                 ></v-select>
               </v-layout>
             </v-container>
@@ -42,22 +42,28 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="danger" flat @click="addDialog = false">Cancel</v-btn>
-            <v-btn color="primary" flat @click="addLook">Add</v-btn>
+            <v-btn color="primary" flat @click="addCloth">Add</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
-      <v-flex v-for="look in relationalLooks" :key="look.style_id" sm6 xs12 md4>
+      <v-flex
+        v-for="cloth in relationalClothes"
+        :key="cloth.cloth_id"
+        sm6
+        xs12
+        md4
+      >
         <v-card>
-          <v-card-title class="headline">{{ look.style_name }}</v-card-title>
+          <v-card-title class="headline">{{ cloth.cloth_name }}</v-card-title>
           <v-img
-            :src="look.image_url | formatImageUrl"
+            :src="cloth.image_url | formatImageUrl"
             contain
             aspect-ratio="1.5"
           ></v-img>
 
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn icon ripple @click.stop="setDeleteDialog(look.style_id)">
+            <v-btn icon ripple @click.stop="setDeleteDialog(cloth.cloth_id)">
               <v-icon>delete</v-icon>
             </v-btn>
           </v-card-actions>
@@ -90,45 +96,47 @@ export default {
   },
   data() {
     return {
-      selectedLooks: [],
+      selectedClothes: [],
       deleteDialog: false,
       addDialog: false,
-      selectedLookDelete: undefined
+      selectedClothDelete: undefined
     }
   },
   computed: {
-    relationalLooks() {
-      return [...this.$store.getters.getRelationalLooks(this.$route.params.id)]
+    relationalClothes() {
+      return [
+        ...this.$store.getters.getRelationalClothes(this.$route.params.id)
+      ]
     },
-    looks() {
-      return [...this.$store.getters.getLooks]
+    clothes() {
+      return [...this.$store.getters.getClothes]
     }
   },
   mounted() {
-    this.$store.dispatch('fetchRelationalLooks', this.$route.params.id)
-    this.$store.dispatch('fetchLooks')
+    this.$store.dispatch('fetchRelationalClothes', this.$route.params.id)
+    this.$store.dispatch('fetchClothes')
   },
   methods: {
     setAddDialog() {
       this.addDialog = true
-      this.selectedLooks = []
+      this.selectedClothes = []
     },
     setDeleteDialog(id) {
       this.deleteDialog = true
-      this.selectedLookDelete = id
+      this.selectedClothDelete = id
     },
-    removeLook() {
+    removeCloth() {
       this.deleteDialog = false
-      this.$store.dispatch('removeRelationalLook', {
-        collectionId: this.$route.params.id,
-        lookId: this.selectedLookDelete
+      this.$store.dispatch('removeRelationalCloth', {
+        closetId: this.$route.params.id,
+        clothId: this.selectedClothDelete
       })
     },
-    addLook() {
+    addCloth() {
       this.addDialog = false
-      this.$store.dispatch('addRelationalLook', {
-        collectionId: this.$route.params.id,
-        lookIds: this.selectedLooks
+      this.$store.dispatch('addRelationalCloth', {
+        closetId: this.$route.params.id,
+        clothIds: this.selectedClothes
       })
     }
   }

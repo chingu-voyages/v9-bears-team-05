@@ -25,5 +25,10 @@ export default {
     const temp = [...state.relationalLooks]
     temp[payload.collectionId] = payload.looks
     state.relationalLooks = [...temp]
+  },
+  SET_RELATIONAL_CLOTHES(state, payload) {
+    const temp = [...state.relationalClothes]
+    temp[payload.closetId] = payload.clothes
+    state.relationalClothes = [...temp]
   }
 }

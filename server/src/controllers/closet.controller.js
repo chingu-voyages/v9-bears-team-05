@@ -166,7 +166,7 @@ exports.getClothes = (req, res) => {
       [req.userId, req.params.id],
     ),
     pg.query(
-      'SELECT cloth_name, c.cloth_id FROM cloth_closet_mapping map INNER JOIN cloth c ON c.cloth_id = map.cloth_id WHERE closet_id = $1',
+      'SELECT cloth_name, c.cloth_id, c.image_url FROM cloth_closet_mapping map INNER JOIN cloth c ON c.cloth_id = map.cloth_id WHERE closet_id = $1',
       [req.params.id],
     ),
   ]).then((results) => {

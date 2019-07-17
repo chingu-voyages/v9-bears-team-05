@@ -21,5 +21,13 @@ export default {
         looks = [...state.relationalLooks[collectionId]]
       return looks
     }
+  },
+  getRelationalClothes(state) {
+    return closetId => {
+      let clothes = []
+      if (state.relationalClothes[closetId] instanceof Array)
+        clothes = [...state.relationalClothes[closetId]]
+      return clothes
+    }
   }
 }
