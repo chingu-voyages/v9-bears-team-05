@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/chingu-voyages/v9-bears-team-05#readme",
   "dependencies": {
-    "aws-sdk": "^2.493.0",
+    "aws-sdk": "^2.814.0",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
